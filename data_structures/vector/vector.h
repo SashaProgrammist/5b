@@ -1,20 +1,26 @@
 //
-// Created by PC on 05.02.2022.
+// Created by PC on 01.02.2022.
 //
-
-#ifndef INC_5B_VECTOR_H
-#define INC_5B_VECTOR_H
 
 #include <stdlib.h>
 #include <malloc.h>
 #include <stdio.h>
 #include <stdbool.h>
 
+#ifndef GIT_VECTOR_H
+#define GIT_VECTOR_H
+
 typedef struct vector {
     int *data;         // указатель на элементы вектора
     size_t size;       // размер вектора
     size_t capacity;   // вместимость вектора
 } vector;
+
+// test
+
+void setTestMod(bool testMod);
+
+//void setTestMod(bool testMod);
 
 // memory usage of vector
 
@@ -50,4 +56,4 @@ int* back(vector *v);
 
 int* front(vector *v);
 
-#endif //INC_5B_VECTOR_H
+#endif //GIT_VECTOR_H

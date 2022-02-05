@@ -4,6 +4,14 @@
 
 #include "vector.h"
 
+// test
+
+bool TEST_MOD = false;
+
+void setTestMod(bool testMod){
+    TEST_MOD = testMod;
+}
+
 // memory usage of vector
 
 vector createVector(size_t n){
@@ -14,6 +22,11 @@ vector createVector(size_t n){
         result.data = malloc(n * sizeof(int));
 
         if (result.data == NULL) {
+            if (TEST_MOD){
+                deleteVector(&result);
+
+                return result;
+            }
             fprintf(stderr, "bad alloc");
             exit(1);
         }
@@ -37,6 +50,11 @@ void reserve(vector *v, size_t newCapacity) {
                         newCapacity * sizeof(int));
 
     if (new == NULL) {
+        if (TEST_MOD){
+            deleteVector(v);
+            return;
+        }
+
         fprintf(stderr, "bad alloc");
         exit(1);
     }
@@ -101,6 +119,8 @@ void popBack(vector *v){
 
 int* atVector(vector *v, size_t index){
     if (v->size <= index){
+        if (TEST_MOD) return NULL;
+
         fprintf(stderr, "IndexError: v[%d] is not exists", index);
         exit(1);
     }
@@ -116,4 +136,3 @@ int* back(vector *v){
 int* front(vector *v){
     return v->data;
 }
-
