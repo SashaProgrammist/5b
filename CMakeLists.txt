@@ -3,4 +3,4 @@ project(5b C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(5b main.c)
+add_executable(5b main.c data_structures/vector/vector.h data_structures/vector/vector.c)
