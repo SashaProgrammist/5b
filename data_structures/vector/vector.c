@@ -96,3 +96,24 @@ void popBack(vector *v){
 
     v->size--;
 }
+
+// access functions
+
+int* atVector(vector *v, size_t index){
+    if (v->size <= index){
+        fprintf(stderr, "IndexError: v[%d] is not exists", index);
+        exit(1);
+    }
+
+    return v->data + index;
+}
+
+int* back(vector *v){
+    if (v->size == 0) return v->data;
+    return v->data + v->size - 1;
+}
+
+int* front(vector *v){
+    return v->data;
+}
+

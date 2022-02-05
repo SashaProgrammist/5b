@@ -42,4 +42,12 @@ void pushBack(vector *v, int x);
 
 void popBack(vector *v);
 
+// access functions
+
+int* atVector(vector *v, size_t index);
+
+int* back(vector *v);
+
+int* front(vector *v);
+
 #endif //INC_5B_VECTOR_H

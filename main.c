@@ -15,7 +15,7 @@ void test_pushBack_standardWork(){
 
     deleteVector(&v);
 }
-void test_pushBack_EmptyVector(){
+void test_pushBack_emptyVector(){
     vector v = createVector(0);
 
     pushBack(&v, 2);
@@ -32,7 +32,7 @@ void test_pushBack_EmptyVector(){
 
     deleteVector(&v);
 }
-void test_pushBack_FullVector(){
+void test_pushBack_fullVector(){
     vector v = createVector(5);
     v.size = 5;
 
@@ -66,12 +66,67 @@ void test_popBack_standardWork(){
     deleteVector(&v);
 }
 
+void test_atVector_standardWork(){
+    int n = 6;
+    vector v = createVector(n);
+    v.size = n;
+
+    for (int i = 0; i < n; ++i) {
+        assert(atVector(&v, i) == v.data + i);
+    }
+
+    deleteVector(&v);
+}
+void test_atVector_notEmptyVector(){
+    vector v = createVector(4);
+    v.size = 4;
+
+    assert(atVector(&v, 2) == v.data + 2);
+    assert(atVector(&v, 1) == v.data + 1);
+
+    deleteVector(&v);
+}
+void test_atVector_requestToLastElement(){
+    vector v = createVector(7);
+    v.size = 7;
+
+    assert(atVector(&v, 6) == v.data + 6);
+
+    deleteVector(&v);
+}
+
+void test_back_oneElementInVector(){
+    vector v = createVector(1);
+    v.size = 1;
+
+    assert(back(&v) == v.data);
+
+    deleteVector(&v);
+}
+
+void test_front_oneElementInVector(){
+    vector v = createVector(1);
+    v.size = 1;
+
+    assert(front(&v) == v.data);
+
+    deleteVector(&v);
+}
+
 void test(){
     test_pushBack_standardWork();
-    test_pushBack_EmptyVector();
-    test_pushBack_FullVector();
+    test_pushBack_emptyVector();
+    test_pushBack_fullVector();
 
     test_popBack_standardWork();
+
+    test_atVector_standardWork();
+    test_atVector_notEmptyVector();
+    test_atVector_requestToLastElement();
+
+    test_back_oneElementInVector();
+
+    test_front_oneElementInVector();
 }
 
 int main() {
