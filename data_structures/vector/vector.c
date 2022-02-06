@@ -15,54 +15,43 @@ void setTestMod(bool testMod){
 // memory usage of vector
 
 vector createVector(size_t n){
-    vector result;
-    result.size = 0;
-    result.capacity = n;
+    vector self = (vector) {
+        NULL, 0, n
+    };
+
     if (n) {
-        result.data = malloc(n * sizeof(int));
+        self.data = malloc(n * sizeof(int));
 
-        if (result.data == NULL) {
+        if (self.data == NULL) {
             if (TEST_MOD){
-                deleteVector(&result);
-
-                return result;
+                deleteVector(&self);
+                return self;
             }
+
             fprintf(stderr, "bad alloc");
             exit(1);
         }
-    } else
-        result.data = NULL;
+    }
 
-    return result;
+    return self;
 }
 
 void reserve(vector *v, size_t newCapacity) {
-    if (isEmpty(v)) {
+    if (isEmpty(v))
         *v = createVector(newCapacity);
-        return;
-    }
-    if (newCapacity == 0) {
+    else if (newCapacity == 0)
         deleteVector(v);
-        return;
-    }
+    else {
+        v->data = (int *) realloc(v->data,
+                                  newCapacity * sizeof(int));
+        if (v->size > newCapacity) v->size = newCapacity;
+        v->capacity = newCapacity;
 
-    void *new = realloc(v->data,
-                        newCapacity * sizeof(int));
-
-    if (new == NULL) {
-        if (TEST_MOD){
-            deleteVector(v);
-            return;
+        if (v->data == NULL) {
+            fprintf(stderr, "bad alloc");
+            exit(1);
         }
-
-        fprintf(stderr, "bad alloc");
-        exit(1);
     }
-
-    v->data = (int *) new;
-    if (v->size > newCapacity) v->size = newCapacity;
-    v->capacity = newCapacity;
-
 }
 
 void clear(vector *v){

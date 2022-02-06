@@ -4,7 +4,7 @@
 #include "data_structures/vector/vectorVoid.h"
 
 void test_pushBack_int(){
-    int n = 8;
+    int n = 1024;
 
     vectorVoid v = createVectorV(0, sizeof(int));
     for (int i = 0; i < n; i++) {
@@ -24,7 +24,7 @@ void test_pushBack_int(){
 }
 
 void test_pushBack_float(){
-    int n = 8;
+    int n = 1024;
 
     vectorVoid v = createVectorV(0, sizeof(float));
     for (int i = 0; i < n; i++) {
