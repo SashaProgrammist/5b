@@ -8,6 +8,8 @@
 #include <limits.h>
 #include <malloc.h>
 #include <stdio.h>
+#include <stdbool.h>
+#include <memory.h>
 
 typedef struct vectorVoid {
      void * data ;         // указатель на нулевой элемент вектора
@@ -27,5 +29,21 @@ void shrinkToFitV(vectorVoid *v);
 void clearV(vectorVoid *v);
 
 void deleteVectorV(vectorVoid *v);
+
+// boolean functions
+
+bool isEmptyV(vectorVoid *v);
+
+bool isFullV(vectorVoid *v);
+
+// the simplest interaction with the structure
+
+void getVectorValueV(vectorVoid *v, size_t index, void *destination);
+
+void setVectorValueV(vectorVoid *v, size_t index, void *source);
+
+void popBackV(vectorVoid *v);
+
+void pushBackV(vectorVoid *v, void *source);
 
 #endif //INC_5B_VECTORVOID_H
