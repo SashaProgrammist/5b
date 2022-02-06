@@ -37,7 +37,7 @@ vector createVector(size_t n){
 }
 
 void reserve(vector *v, size_t newCapacity) {
-    if (v->data == NULL) {
+    if (isEmpty(v)) {
         *v = createVector(newCapacity);
         return;
     }
